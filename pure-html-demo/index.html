@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>pure-html-umd</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      .container {
+        height: 100vh;
+      }
+    </style>
+    <script src="./umd/ray-streaming.umd.js"></script>
+    <script src="./umd/live-dragon.umd.js"></script>
+  </head>
+  <body>
+    <div class="container"></div>
+  </body>
+  <script>
+    const { Launcher, MobileLauncher } = LiveDragon
+    const container = document.querySelector('.container')
+    let isPC = true
+    
+    const signaling = `replace_signaling_url_here`
+    const iceConfig = [
+      {
+        urls: 'replace_coturn_url_here',
+        username: 'replace_coturn_username_here',
+        credential: 'replace_coturn_password_here',
+      },
+    ]
+    if (isPC) {
+      const launcher = new Launcher(signaling, iceConfig, container)
+    } else {
+      const launcher = new MobileLauncher(signaling, iceConfig, container)
+    }
+  </script>
+</html>

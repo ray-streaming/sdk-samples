@@ -1,0 +1,17 @@
+{
+  "name": "vanilla-demo",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "dev": "rollup --bundleConfigAsCjs -c rollup.config.js -w"
+  },
+  "devDependencies": {
+    "@rollup/plugin-commonjs": "^24.0.1",
+    "@rollup/plugin-node-resolve": "^15.0.1",
+    "rollup": "^3.20.2"
+  },
+  "dependencies": {
+    "live-dragon": "^1.9.10"
+  }
+}
