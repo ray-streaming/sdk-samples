@@ -168,6 +168,13 @@ launcher.sendMobileAction(keycode, MobileKeysActionType.ActionDown)
 launcher.sendMobileAction(keycode, MobileKeysActionType.ActionUp)
 ```
 
+2. 调整码率
+- 单位 kbps
+
+```typescript
+mobileLauncher.connection.changeBandwidthByRenegotiation(1500)
+```
+
 ### Launcher 和 MobileLauncher 共有功能
 
 1. 放大镜
@@ -203,10 +210,10 @@ launcher.destory()
 5. 获取网络信息
 
 - 初始化`Launcher`或者`MobileLauncher`时候需要传入 options: `autorunRivatuner: true`
-- 说明: 
+- 说明:
   - fps: 帧数
   - latency: 客户端与节点端服务之间来回的时间，单位: ms
-  - rtt: 客户端与ICE服务器之间来回的时间，单位: ms
+  - rtt: 客户端与 ICE 服务器之间来回的时间，单位: ms
   - packetLossRate: 丢包率
   - bitrate: 单位: kbps
 - 例子: https://github.com/ray-streaming/sdk-samples/blob/master/react-demo/src/launcher.tsx
