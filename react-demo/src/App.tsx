@@ -12,7 +12,12 @@ function App() {
 
   return (
     <div style={{ width: '100%', height: '100vh' }}>
-      <Launcher url={url} iceConfig={iceConfig} />
+      <Launcher
+        url={url}
+        iceConfig={iceConfig}
+        // autorunRivatuner: true 获取网络信息
+        options={{ autorunRivatuner: true }}
+      />
     </div>
   )
 }

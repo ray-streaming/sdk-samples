@@ -1,4 +1,4 @@
-import { useRef, useEffect } from 'react'
+import { useRef, useEffect, useState } from 'react'
 import { Launcher } from 'live-dragon'
 import { Options } from './interface'
 
@@ -14,7 +14,9 @@ interface Props {
 function LDLauncher(props: Props) {
   const { url, iceConfig, options } = props
   const launcher = useRef<Launcher>()
+  const [data, setData] = useState<ReturnType<Launcher['report']>>()
   const containerRef = useRef<HTMLDivElement>(null!)
+  let timer = useRef<number>(NaN)
 
   useEffect(() => {
     launcher.current = new Launcher(
@@ -23,6 +25,17 @@ function LDLauncher(props: Props) {
       containerRef.current,
       options
     )
+
+    if (timer.current) {
+      window.clearInterval(timer.current)
+      timer.current = NaN
+    }
+    timer.current = setInterval(() => {
+      // 获取网络信息数据
+      const info = launcher.current!.report()
+      setData(info)
+    }, 1000)
+
     return () => {
       /**
        * SDK Warning: WebSocket is closed before the connectin is established
@@ -30,14 +43,34 @@ function LDLauncher(props: Props) {
        * you can remove Strict mode to test it.
        */
       launcher.current?.destory()
+      window.clearInterval(timer.current)
     }
   }, [])
 
   return (
-    <div
-      ref={containerRef}
-      style={{ width: '100%', height: '100%', position: 'relative' }}
-    ></div>
+    <>
+      <div
+        ref={containerRef}
+        style={{ width: '100%', height: '100%', position: 'relative' }}
+      ></div>
+      <div
+        style={{
+          position: 'fixed',
+          left: '0px',
+          top: '0px',
+          background: 'rgba(0, 0, 0, 0.3)',
+          color: '#fff',
+          padding: '10px',
+        }}
+      >
+        {data &&
+          Object.keys(data).map((key) => (
+            <p key={key}>
+              {key}: {data[key as keyof typeof data]}
+            </p>
+          ))}
+      </div>
+    </>
   )
 }
 

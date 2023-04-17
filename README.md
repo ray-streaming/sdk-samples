@@ -199,3 +199,25 @@ launcher.hideDashboard()
 ```typescript
 launcher.destory()
 ```
+
+5. 获取网络信息
+
+- 初始化`Launcher`或者`MobileLauncher`时候需要传入 options: `autorunRivatuner: true`
+- 说明: 
+  - fps: 帧数
+  - latency: 客户端与节点端服务之间来回的时间，单位: ms
+  - rtt: 客户端与ICE服务器之间来回的时间，单位: ms
+  - packetLossRate: 丢包率
+  - bitrate: 单位: kbps
+- 例子: https://github.com/ray-streaming/sdk-samples/blob/master/react-demo/src/launcher.tsx
+- 其他：参考 https://www.w3.org/TR/webrtc-stats/#stats-dictionaries
+
+```typescript
+const launcher = new Launcher(url, iceConfig, hostElement, {
+  autorunRivatuner: true,
+})
+window.setInterval(() => {
+  // info 为所需要的网络信息
+  const info = launcher.report()
+})
+```
