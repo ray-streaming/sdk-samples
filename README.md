@@ -145,6 +145,25 @@ launcher.showOnScreenControlsByProfileId(id)
 launcher.hideOnScreenControls()
 ```
 
+5. 文件上传
+
+```javascript
+// file 为浏览器 File 对象
+launcher.uploadFile(file, (e) => {
+  if (e.state === 'queue') {
+    console.log('queue')
+  } else if (e.state === 'progress') {
+    // 发送进度 [0-1]
+    console.log(e.progress)
+  } else if (e.state === 'error') {
+    // 远端拒绝接或者发送错误
+    console.error(e.reason)
+  } else if (e.state === 'done') {
+    console.log('done')
+  }
+})
+```
+
 ### MobileLauncher 功能
 
 1. 发送手机功能键
@@ -163,9 +182,9 @@ enum MobileKeysActionType {
 }
 const keycode = MobileKeysKeycode.KeycodeHome
 // 按下
-launcher.sendMobileAction(keycode, MobileKeysActionType.ActionDown)
+mobileLauncher.sendMobileAction(keycode, MobileKeysActionType.ActionDown)
 // 抬起
-launcher.sendMobileAction(keycode, MobileKeysActionType.ActionUp)
+mobileLauncher.sendMobileAction(keycode, MobileKeysActionType.ActionUp)
 ```
 
 2. 调整码率
