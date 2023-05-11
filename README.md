@@ -150,10 +150,8 @@ launcher.hideOnScreenControls()
 ```javascript
 // file 为浏览器 File 对象
 launcher.uploadFile(file, (e) => {
-  if (e.state === 'queue') {
-    console.log('queue')
-  } else if (e.state === 'progress') {
-    // 发送进度 [0-1]
+  if (e.state === 'progress') {
+    // 发送进度 [0-100]
     console.log(e.progress)
   } else if (e.state === 'error') {
     // 远端拒绝接或者发送错误
