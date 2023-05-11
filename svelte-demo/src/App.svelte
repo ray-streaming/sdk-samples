@@ -12,7 +12,7 @@
 </script>
 
 <main class="container">
-  <Launcher {url} {iceConfig} />
+  <Launcher {url} {iceConfig} options={{ enableControlPanel: true, autorunRivatuner: true }} />
 </main>
 
 <style>

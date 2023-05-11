@@ -15,7 +15,7 @@ window.onload = () => {
     },
   ]
   if (isPC) {
-    launcher = new Launcher(signaling, iceConfig, container)
+    launcher = new Launcher(signaling, iceConfig, container, { enableControlPanel: true, autorunRivatuner: true })
   } else {
     launcher = new MobileLauncher(signaling, iceConfig, container)
   }

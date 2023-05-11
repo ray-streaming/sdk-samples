@@ -19,6 +19,6 @@
     "vite": "^4.2.0"
   },
   "dependencies": {
-    "live-dragon": "^1.9.10"
+    "live-dragon": "^1.10.1"
   }
 }

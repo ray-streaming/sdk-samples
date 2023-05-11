@@ -25,7 +25,7 @@
     const { Launcher, MobileLauncher } = LiveDragon
     const container = document.querySelector('.container')
     let isPC = true
-    
+
     const signaling = `replace_signaling_url_here`
     const iceConfig = [
       {
@@ -35,7 +35,10 @@
       },
     ]
     if (isPC) {
-      const launcher = new Launcher(signaling, iceConfig, container)
+      const launcher = new Launcher(signaling, iceConfig, container, {
+        enableControlPanel: true,
+        autorunRivatuner: true,
+      })
     } else {
       const launcher = new MobileLauncher(signaling, iceConfig, container)
     }

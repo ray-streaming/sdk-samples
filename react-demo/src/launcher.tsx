@@ -53,23 +53,6 @@ function LDLauncher(props: Props) {
         ref={containerRef}
         style={{ width: '100%', height: '100%', position: 'relative' }}
       ></div>
-      <div
-        style={{
-          position: 'fixed',
-          left: '0px',
-          top: '0px',
-          background: 'rgba(0, 0, 0, 0.3)',
-          color: '#fff',
-          padding: '10px',
-        }}
-      >
-        {data &&
-          Object.keys(data).map((key) => (
-            <p key={key}>
-              {key}: {data[key as keyof typeof data]}
-            </p>
-          ))}
-      </div>
     </>
   )
 }

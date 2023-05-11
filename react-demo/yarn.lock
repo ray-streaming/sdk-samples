@@ -554,12 +554,12 @@ json5@^2.2.2:
   resolved "https://registry.npmjs.org/json5/-/json5-2.2.3.tgz#78cd6f1a19bdc12b73db5ad0c61efd66c1e29283"
   integrity sha512-XmOWe7eyHYH14cLdVPoyg+GOH3rYX++KpzrylJwSW98t3Nk+U8XOl8FWKOgwtzdb8lXGf6zYwDUzeHMWfxasyg==
 
-live-dragon@^1.9.10:
-  version "1.9.10"
-  resolved "https://registry.npmjs.org/live-dragon/-/live-dragon-1.9.10.tgz#7f274fb8bbbff801ac76a30beb69c3c2a9d3db94"
-  integrity sha512-XZoJS5KJ0mkt/ySUf0jRvH1ePjUwO5ZRCs+HfPTtxaqqyt/eVa5b8pX02u7qb6NoyDVWvYcRuiWR+ja/hkuN1A==
+live-dragon@^1.10.1:
+  version "1.10.1"
+  resolved "https://registry.yarnpkg.com/live-dragon/-/live-dragon-1.10.1.tgz#945c65e2d1ff1e64f4ff5dc19b138ab69435813e"
+  integrity sha512-Aqn8DfXjVlIAALVvJaBKVkKs9/B2Ag3I2NNyJjva2LYzAjMmXhfnuA7V9wG/77ftfHr6G9y+/ZJzYPMg0K5x3Q==
   dependencies:
-    ray-streaming "2.19.8"
+    ray-streaming "2.20.1"
     rxjs "^7.4.0"
 
 loose-envify@^1.1.0:
@@ -617,10 +617,10 @@ postcss@^8.4.21:
     picocolors "^1.0.0"
     source-map-js "^1.0.2"
 
-ray-streaming@2.19.8:
-  version "2.19.8"
-  resolved "https://registry.npmjs.org/ray-streaming/-/ray-streaming-2.19.8.tgz#745776f0a61595896afefce39f9f19b6406cfbf0"
-  integrity sha512-iGpxOPE/ZNUtX+bGMzW5SnvBZocyuyBTzugrSony+FfoW748oD1NTBKNRBsgSO07inrmjb8VMrE2ID/j0xVaXA==
+ray-streaming@2.20.1:
+  version "2.20.1"
+  resolved "https://registry.yarnpkg.com/ray-streaming/-/ray-streaming-2.20.1.tgz#5c89275cc8517550cb4cc1ca33d6ea1a1fe6ec1f"
+  integrity sha512-UiODksNu+Pvz1jXOoey62WkNGv/S1ENS5Vl2ZciDRe9hstXKkKxaqwodYmyyUKiXXN7ChI37May8QTtFy1CLKA==
   dependencies:
     resize-observer-polyfill "^1.5.1"
     rxjs "^7.4.0"

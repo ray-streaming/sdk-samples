@@ -15,8 +15,9 @@ function App() {
       <Launcher
         url={url}
         iceConfig={iceConfig}
-        // autorunRivatuner: true 获取网络信息
-        options={{ autorunRivatuner: true }}
+        // autorunRivatuner: true 获取网络信息, enableControlPanel: 开启控制面板
+        // 详见 https://www.npmjs.com/package/live-dragon
+        options={{ autorunRivatuner: true, enableControlPanel: true }}
       />
     </div>
   )

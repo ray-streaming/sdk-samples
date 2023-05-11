@@ -154,12 +154,12 @@ is-reference@1.2.1:
   dependencies:
     "@types/estree" "*"
 
-live-dragon@^1.9.10:
-  version "1.9.10"
-  resolved "https://registry.npmjs.org/live-dragon/-/live-dragon-1.9.10.tgz#7f274fb8bbbff801ac76a30beb69c3c2a9d3db94"
-  integrity sha512-XZoJS5KJ0mkt/ySUf0jRvH1ePjUwO5ZRCs+HfPTtxaqqyt/eVa5b8pX02u7qb6NoyDVWvYcRuiWR+ja/hkuN1A==
+live-dragon@^1.10.1:
+  version "1.10.1"
+  resolved "https://registry.yarnpkg.com/live-dragon/-/live-dragon-1.10.1.tgz#945c65e2d1ff1e64f4ff5dc19b138ab69435813e"
+  integrity sha512-Aqn8DfXjVlIAALVvJaBKVkKs9/B2Ag3I2NNyJjva2LYzAjMmXhfnuA7V9wG/77ftfHr6G9y+/ZJzYPMg0K5x3Q==
   dependencies:
-    ray-streaming "2.19.8"
+    ray-streaming "2.20.1"
     rxjs "^7.4.0"
 
 magic-string@^0.27.0:
@@ -193,10 +193,10 @@ picomatch@^2.3.1:
   resolved "https://registry.npmjs.org/picomatch/-/picomatch-2.3.1.tgz#3ba3833733646d9d3e4995946c1365a67fb07a42"
   integrity sha512-JU3teHTNjmE2VCGFzuY8EXzCDVwEqB2a8fsIvwaStHhAWJEeVd1o1QD80CU6+ZdEXXSLbSsuLwJjkCBWqRQUVA==
 
-ray-streaming@2.19.8:
-  version "2.19.8"
-  resolved "https://registry.npmjs.org/ray-streaming/-/ray-streaming-2.19.8.tgz#745776f0a61595896afefce39f9f19b6406cfbf0"
-  integrity sha512-iGpxOPE/ZNUtX+bGMzW5SnvBZocyuyBTzugrSony+FfoW748oD1NTBKNRBsgSO07inrmjb8VMrE2ID/j0xVaXA==
+ray-streaming@2.20.1:
+  version "2.20.1"
+  resolved "https://registry.yarnpkg.com/ray-streaming/-/ray-streaming-2.20.1.tgz#5c89275cc8517550cb4cc1ca33d6ea1a1fe6ec1f"
+  integrity sha512-UiODksNu+Pvz1jXOoey62WkNGv/S1ENS5Vl2ZciDRe9hstXKkKxaqwodYmyyUKiXXN7ChI37May8QTtFy1CLKA==
   dependencies:
     resize-observer-polyfill "^1.5.1"
     rxjs "^7.4.0"
