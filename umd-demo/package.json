@@ -1,0 +1,16 @@
+{
+  "name": "pure-html-demo",
+  "version": "0.1.0",
+  "main": "index.js",
+  "author": "Kitsch <xc648593557@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "start": "serve"
+  },
+  "dependencies": {
+    "live-dragon": "^1.10.1"
+  },
+  "devDependencies": {
+    "serve": "^14.2.0"
+  }
+}
