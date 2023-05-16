@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>file transfer demo</title>
+    <script src="./node_modules/ray-streaming/ray-streaming.umd.js"></script>
+    <script src="./node_modules/live-dragon/live-dragon.umd.js"></script>
+  </head>
+  <style>
+    #container {
+      width: 1280px;
+      height: 720px;
+      position: relative;
+      background-color: #000;
+    }
+  </style>
+  <body>
+    <p id="phase">initial</p>
+    <input type="file" id="file-upload" />
+    <p id="progress"></p>
+    <div id="container"></div>
+  </body>
+  <script>
+    const { Launcher } = LiveDragon;
+    const container = document.getElementById("container");
+    const phase = document.querySelector("p#phase");
+    const progress = document.querySelector("p#progress");
+    const input = document.querySelector("input#file-upload");
+    input.addEventListener("change", uploadFile);
+
+    const signaling = `replace_signaling_url_here`;
+    const iceConfig = [
+      {
+        urls: `replace_coturn_url_here`,
+        username: `replace_coturn_username_here`,
+        credential: `replace_coturn_password_here`,
+      },
+    ];
+    const launcher = new Launcher(signaling, iceConfig, container, {
+      enableControlPanel: true,
+      autorunRivatuner: true,
+      enableClipboard: false,
+      enableLogPersistent: false,
+      onPhaseChange: (p, d) => {
+        // NOTE: meaning reconnet
+        if (d === 0) {
+          phase.innerHTML = "initial";
+        } else {
+          phase.innerHTML += ` => ${p}(${d}ms)`;
+        }
+      },
+    });
+
+    function uploadFile(event) {
+      const file = input.files[0];
+      launcher.uploadFile(file, (e) => {
+        if (e.state === "progress") {
+          console.log(e.progress);
+          progress.innerHTML = `${file.name} upload progress: ${e.progress}%`;
+        } else if (e.state === "error") {
+          console.error(e.reason);
+        } else if (e.state === "done") {
+          console.log(file.name, "done");
+          input.value = "";
+        }
+      });
+    }
+  </script>
+</html>
