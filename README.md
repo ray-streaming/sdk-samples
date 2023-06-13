@@ -1,98 +1,77 @@
-#### Starter
+### 快速接入
 
-1. 应用服务申请需要到平台上启动
+1. 启动应用
 
-- Paas 端：https://console.doulongyun.com/cloud-gaming/manager/game
-- 云手机端：https://console.doulongyun.com/cloud-phone/create-instance
+- 云游戏服务：[云游戏服务 -> 云游戏管理 -> 游戏管理 -> 操作列启动按钮](https://console.doulongyun.com/cloud-gaming/manager/game)
+- 云手机：[云手机 -> 实例管理 -> 创建实例按钮](https://console.doulongyun.com/cloud-phone/create-instance)
 
-2. 应用启动后获取对应的参数
+2. 获取实例化参数
 
-- Paas 端：进入 https://console.doulongyun.com/cloud-gaming/real-time
-  点击表格操作栏的直连信息，获取身份信息`token`、信令服务器域名地址`address`、ice 服务域名地址`url`；
-  根据`address`和`token`拼接成信令地址`signaling`：`wss://${address}/clientWebsocket/${token}`。根据`url`拼接 ice 配置`iceConfig`。
+- 云游戏服务：[云游戏服务 -> 实时进程](https://console.doulongyun.com/cloud-gaming/real-time)，点击操作列中直连信息。
+- 云手机：[云游戏 -> 实例管理](https://console.doulongyun.com/cloud-phone/vm-node)，点击操作列中直连信息。
+
+从弹出侧栏的“Web直连信息”中获得以下字段信息：
+
+| 字段名  | 说明         |
+| ------- | ------------ |
+| token   | 应用唯一标识 |
+| address | 信令服务地址 |
+| url     | ICE 服务地址 |
+
+3. 使用上述信息初始化 `signaling` 与 `iceConfig` 变量
 
 ```typescript
+// 所有服务的 iceConfig 配置一致
 const iceConfig = [
   {
-    urls: `stun:${url}:3478`, // 默认端口3478
-    username: xxx,
-    credential: yyy,
-  },
-  {
-    urls: `turn:${url}:3478`, // 默认端口3478
-    username: xxx,
-    credential: yyy,
+    urls: `turn:${url}:3478`, // 默认端口 3478
+    username: 'coturn',       // 默认用户 coturn
+    credential: '123456',     // 默认凭据 123456
   },
 ]
-// Paas启动的PC应用
+// 云游戏服务信令地址
+const signaling = `wss://${address}/clientWebsocket/${token}`
+// 云手机信令地址
+const signaling = `wss://${address}/signaling/client/${token}`
+```
+
+4. 初始化实例
+
+连接实例前两个参数由步骤 3 提供，`hostElement` 为任意固定尺寸的 HTML 元素。
+
+不同应用类型 Launcher 不一致，若类型不匹配虽连接仍可建立但事件转换不一致会导致无法交互。
+
+```typescript
+// 如果启动的是 Windows 应用
 const launcher = new Launcher(signaling, iceConfig, hostElement)
-// Paas启动的移动端应用
+// 如果启动的是 Android 应用
 const launcher = new MobileLauncher(signaling, iceConfig, hostElement)
 ```
 
-- 云手机端：进入 https://console.doulongyun.com/cloud-phone/vm-node
-  点击表格操作栏的直连信息，获取身份信息`token`、信令服务器域名地址`address`、ice 服务域名地址`url`，
-  根据`address`和`token`拼接成信令地址`signaling`：`wss://${address}/signaling/client/${token}`，根据`url`拼接成 ice 配置`iceConfig`。
+### DEMO
 
-```typescript
-const iceConfig = [
-  {
-    urls: `stun:${url}:3478`, // 默认端口3478
-    username: xxx,
-    credential: yyy,
-  },
-  {
-    urls: `turn:${url}:3478`, // 默认端口3478
-    username: xxx,
-    credential: yyy,
-  },
-]
-const launcher = new MobileLauncher(signaling, iceConfig, hostElement)
-```
+#### React
 
-3. 虚拟按键编辑地址
+- [Windows 应用](https://github.com/ray-streaming/sdk-samples/blob/master/react-demo/src/launcher.tsx)
+- [Android 应用](https://github.com/ray-streaming/sdk-samples/blob/master/react-demo/src/mobile-launcher.tsx)
 
-- https://console.doulongyun.com/cloud-gaming/manager/control
+#### Vue.js
 
-#### React 例子
+1. [Windows 应用](https://github.com/ray-streaming/sdk-samples/blob/master/vue-demo/src/setup-launcher.vue)
 
-1. Paas 端启动的 PC 端推流应用
+2. [Android 应用](https://github.com/ray-streaming/sdk-samples/blob/master/vue-demo/src/setup-mobile-launcher.vue)
 
-- https://github.com/ray-streaming/sdk-samples/blob/master/react-demo/src/launcher.tsx
+#### Svelte
 
-2. 云手机端启动的推流应用以及 Paas 端启动的手机应用
+1. [Windows 应用](https://github.com/ray-streaming/sdk-samples/blob/master/svelte-demo/src/launcher.svelte)
 
-- https://github.com/ray-streaming/sdk-samples/blob/master/react-demo/src/mobile-launcher.tsx
+2. [Android 应用](https://github.com/ray-streaming/sdk-samples/blob/master/svelte-demo/src/mobile-launcher.svelte)
 
-#### Vue 例子
+#### [Vanilla JS](https://github.com/ray-streaming/sdk-samples/blob/master/vanilla-demo/src/index.js)
 
-1. Paas 端启动的 PC 端推流应用
+#### [UMD](https://github.com/ray-streaming/sdk-samples/blob/master/pure-html-demo/index.html)
 
-- https://github.com/ray-streaming/sdk-samples/blob/master/vue-demo/src/setup-launcher.vue
-
-2. 云手机端启动的推流应用以及 Paas 端启动的手机应用
-
-- https://github.com/ray-streaming/sdk-samples/blob/master/vue-demo/src/setup-mobile-launcher.vue
-
-#### Svelte 例子
-
-1. Paas 端启动的 PC 端推流应用
-
-- https://github.com/ray-streaming/sdk-samples/blob/master/svelte-demo/src/launcher.svelte
-
-2. 云手机端启动的推流应用以及 Paas 端启动的手机应用
-
-- https://github.com/ray-streaming/sdk-samples/blob/master/svelte-demo/src/mobile-launcher.svelte
-
-#### vanilla-js 例子
-
-- https://github.com/ray-streaming/sdk-samples/blob/master/vanilla-demo/src/index.js
-
-#### umd 例子
-
-- https://github.com/ray-streaming/sdk-samples/blob/master/pure-html-demo/index.html
-
-#### Launcher 功能
+### Launcher 功能
 
 1. 虚拟键盘
 
@@ -103,14 +82,14 @@ launcher.showKeyboard()
 launcher.hideKeyboard()
 ```
 
-2. IME 键盘(手机自带键盘)
+2. IME 键盘(手机默认输入法)
 
 ```typescript
-//开启
+// 唤起
 launcher.wakeOnIME()
 ```
 
-3. 虚拟手柄
+3. 虚拟摇杆
 
 ```typescript
 // 开启
@@ -121,8 +100,11 @@ launcher.hideJoyStick()
 
 4. 自定义虚拟按键
 
+使用[虚拟控件编辑器](https://console.doulongyun.com/public-share/virtual-control-editor/)创建控件布局，复制键盘配置初始化 `layout` 变量。
+
 ```typescript
-const config = [
+// 这里创建了一个 S 按键
+const layout = [
   {
     xPercent: 0.11299435028248588,
     yPercent: 0.6782128514056225,
@@ -138,8 +120,9 @@ const config = [
     anchor: 'screen',
   },
 ]
-const id = launcher.createOnScreenControlsProfile('control1', config)
-// 开启某个虚拟按键配置，参数可选，不传默认第一个
+// 创建一个虚拟控件布局，返回值为该布局的唯一标识
+const id = launcher.createOnScreenControlsProfile('control_name', layout)
+// 显示指定 id 的虚拟控件布局，参数可选，不传默认显示第一个
 launcher.showOnScreenControlsByProfileId(id)
 // 关闭
 launcher.hideOnScreenControls()
@@ -186,9 +169,8 @@ mobileLauncher.sendMobileAction(keycode, MobileKeysActionType.ActionUp)
 ```
 
 2. 调整码率
-- 单位 kbps
-
 ```typescript
+// 单位 kbps
 mobileLauncher.connection.changeBandwidthByRenegotiation(1500)
 ```
 
@@ -226,15 +208,15 @@ launcher.destory()
 
 5. 获取网络信息
 
-- 初始化`Launcher`或者`MobileLauncher`时候需要传入 options: `autorunRivatuner: true`
+- 初始化 `Launcher` 或者 `MobileLauncher` 时候需要传入 options:  `autorunRivatuner: true`
 - 说明:
   - fps: 帧数
-  - latency: 客户端与节点端服务之间来回的时间，单位: ms
-  - rtt: 客户端与 ICE 服务器之间来回的时间，单位: ms
+  - latency: 客户端与节点端服务之间往返时间，单位: ms
+  - rtt: 客户端与 ICE 服务器之间往返时间，单位: ms
   - packetLossRate: 丢包率
   - bitrate: 单位: kbps
-- 例子: https://github.com/ray-streaming/sdk-samples/blob/master/react-demo/src/launcher.tsx
-- 其他：参考 https://www.w3.org/TR/webrtc-stats/#stats-dictionaries
+- [例子](https://github.com/ray-streaming/sdk-samples/blob/master/react-demo/src/launcher.tsx)
+- 其他字段参考: [Stats dictionaries](https://www.w3.org/TR/webrtc-stats/#stats-dictionaries)
 
 ```typescript
 const launcher = new Launcher(url, iceConfig, hostElement, {
