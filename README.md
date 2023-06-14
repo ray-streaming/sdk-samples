@@ -166,9 +166,9 @@ launcher.uploadFile(file, (e) => {
 ```typescript
 // 修改推流端编码器的设置
 launcher.changeCodecOptions({
-  bitrate: 3000, // 码率
-  framerate: 30, // 帧率
-  gopLength: 250, // I 帧间隔
+  bitrate: 3000,   // 码率
+  framerate: 30,   // 帧率
+  gopLength: 250,  // I 帧间隔
 });
 // 如果只需改变码率
 launcher.changeCodecOptions({ bitrate: 3000 });
@@ -202,11 +202,17 @@ launcher.sendMobileAction(MobileKeysKeycode.KeycodeHome, MobileKeysActionType.Ac
 launcher.sendMobileAction(MobileKeysKeycode.KeycodeHome, MobileKeysActionType.ActionUp);
 ```
 
-##### 调整码率
+##### 变更码率
 
 ```typescript
 // 单位 kbps
 launcher.connection.changeBandwidthByRenegotiation(1500);
+```
+##### 变更分辨率比例
+
+```typescript
+// 范围 [0-1]
+launcher.connection.changeMobileResolutionScale(0.5);
 ```
 
 ### 通用功能
