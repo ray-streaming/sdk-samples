@@ -208,6 +208,7 @@ launcher.sendMobileAction(MobileKeysKeycode.KeycodeHome, MobileKeysActionType.Ac
 // 单位 kbps
 launcher.connection.changeBandwidthByRenegotiation(1500);
 ```
+
 ##### 变更分辨率比例
 
 ```typescript
@@ -237,7 +238,7 @@ window.setInterval(() => {
   console.log(`
     FPS: ${fps}
     rtt: ${rtt}ms
-		latency: ${latency}ms
+    latency: ${latency}ms
     biterate: ${bitrate}kbps
     packetLossRate: ${(packetLossRate * 100).toFixed(3)}%
   `);
@@ -290,8 +291,7 @@ new MobileLauncher(url, iceServers, hostElement[, options])
 | autorunRivatuner   | boolean                                     | false    | 是否自动开启数据统计                                                |
 | orientationLock    | boolean                                     | false    | 开启后流内容不再自动旋转                                            |
 | enableControlPanel | boolean                                     | false    | 是否开启默认的控制面板                                              |
-| enableClipboard    | boolean                                     | false    | 是否开启剪贴板同步                                                  |
-| themeColor         | string                                      | 'ff0000' | 虚拟控件的主题色                                                    |
+| themeColor         | string                                      | 'ff0000' | 虚拟控件（如果有）的主题色                                               |
 | onPhaseChange      | `(phase: Phase, deltaTime: number) => void` | noop     | 每当阶段变化会产生一次事件，参数二为两次事件的间隔，详见 Phase 说明 |
 
 ##### `Launcher` 独有的可选参数
@@ -301,6 +301,7 @@ new MobileLauncher(url, iceServers, hostElement[, options])
 | disableFileTransfer   | boolean | false  | 是否拒绝接收远端推送的文件                             |
 | disablePointerManager | boolean | false  | 是否禁用指针样式同步                                   |
 | disablePointerLock    | boolean | false  | 是否禁用指针锁定（即使没有指针也不进入相对移动模式）   |
+| enableClipboard       | boolean | false  | 是否开启剪贴板同步                                     |
 | useClassicEvent       | boolean | false  | 是否使用 `mouseevent` 替代 `pointerevent` 作为指针事件 |
 
 ##### Phase 说明
