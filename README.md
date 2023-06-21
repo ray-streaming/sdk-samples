@@ -319,7 +319,7 @@ new MobileLauncher(url, iceServers, hostElement[, options])
 
 ### 事件
 
-如需自行处理一些流程，可以通过 `launcher.connection.event.[on|off|once|emit]` 进行交互。
+如需自行处理一些流程，可以通过 `launcher.connection.event.[eventName].[on|off|once|emit]` 进行交互。
 
 | event name           | 发送时间点/说明                                           | payload                                                     |
 | -------------------- | --------------------------------------------------------- | ----------------------------------------------------------- |
@@ -336,15 +336,15 @@ new MobileLauncher(url, iceServers, hostElement[, options])
 | receivedLink         | 推流端捕获到超链接时                                      | `string`                                                    |
 | receivedTrack        | 实例接收到媒体轨道时；payload 为该轨道                    | `MediaStreamTrack`                                          |
 | dataChannelConnected | DataChannel 实例打开时；当收到该事件时说明可以开始交互    | `Event`                                                     |
-| interaction          | 推流端运行的应用利用 socket 发送事件时                    | `string | ArrayBuffer`                                     |
-| kick                 | 收到信令的 kick 事件时                                    | `{ base64: string, show: boolean, x: number, y: number }`   |
+| interaction          | 推流端运行的应用利用 socket 发送事件时                    | `string \| ArrayBuffer`                                     |
+| kick                 | 收到信令的 kick 事件时                                    | `string`                                                  |
 | networkChanged       | PeerConnection 检测到网络变化时                           | `string`                                                    |
 | echo                 | 收到响应的 echo 消息时；payload 为该次往返时间            | `number`                                                    |
 | screenshot           | 完整接收完截图数据时；payload 为截图数据                  | `Blob`                                                      |
 | screenshotData       | 收到截图数据时；payload 为数据字节长度                    | `number`                                                    |
 | kickOut              | 收到踢人消息时                                            | `string`                                                    |
-| clipboard            | 完整接收完剪贴板数据时；payload 为剪贴板数据              | `string | Blob`                                            |
-| videoSettings        | 收到视频编码配置时                                        | `{ framerate: number; bitrate: number; gopLength: number }` |
+| clipboard            | 完整接收完剪贴板数据时；payload 为剪贴板数据              | `string \| Blob`                                            |
+| encodeSettings       | 收到视频编码配置时                                        | `{ framerate: number; bitrate: number; gopLength: number }` |
 | mobileResolutionInfo | 收到 Android 的分辨率数据时                               | `{ width: number; height: number; scale: number }`          |
 | resolutionInfo       | 收到 Windows/Linux 的分辨率数据时                         | `[number, number, number][]`                                |
 
