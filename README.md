@@ -331,7 +331,7 @@ new MobileLauncher(url, iceServers, hostElement[, options])
 | ready                | 收到信令的 ready 事件时                                   | `ReadyMSG`                                                  |
 | endCandidate         | 连接双方完成 ICE 候选地址的交换时                         | `RTCPeerConnectionIceEvent`                                 |
 | cursor               | 推流端光标有变化时                                        | `Cursor`                                                    |
-| handUp               | 当推流端与信令失联时                                      | `void`                                                      |
+| hangUp               | 当推流端与信令失联时                                      | `void`                                                      |
 | disconnect           | 收到信令的 peerDisconnected 事件或 WebSocket 链接断开始时 | `string`                                                    |
 | receivedLink         | 推流端捕获到超链接时                                      | `string`                                                    |
 | receivedTrack        | 实例接收到媒体轨道时；payload 为该轨道                    | `MediaStreamTrack`                                          |
